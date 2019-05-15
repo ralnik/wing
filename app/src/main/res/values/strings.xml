@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">wing</string>
+    <string name="label_countrooms">КОЛИЧЕСТВО КОМНАТ</string>
+    <string name="title_parameters">ПАРАМЕТРЫ</string>
+    <string name="title_corpus">КОРПУС</string>
+    <string name="title_floor">ЭТАЖ</string>
+    <string name="title_cost">ЦЕНА(РУБ. М<sup>2</sup> )</string>
+    <string name="title_square">ПЛОЩАДЬ (М<sup>2</sup> )</string>
+    <string name="settings_title_attention">Смена адреса сервера и пароль влияют на работоспособность всей системы \n
+        Перед внесением изменений рекомендуем связаться с \n
+        системным администратором
+    </string>
+
+<!--Название столбцов в таблице-->
+    <string name="korpus">КОРПУС</string>
+    <string name="num_flat">№ КВАРТИРЫ</string>
+    <string name="floor">ЭТАЖ</string>
+    <string name="count_room">КОЛИЧЕСТВО КОМНАТ</string>
+    <string name="square">ПЛОЩАДЬ, М<sup>2</sup> </string>
+    <string name="cost">ЦЕНА</string>
+    <string name="status">СТАТУС КВАРТИРЫ</string>
+    <string name="no_row">Нет записей удовлетворяющих заданным условиям.</string>
+</resources>

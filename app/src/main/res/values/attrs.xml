@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--************ SeekbarRange *****************-->
+    <declare-styleable name="SeekbarRange">
+        <attr name="sbr_textSizeOfEdits" format="integer" />
+        <attr name="sbr_textColorOfEdits" format="color" />
+        <attr name="sbr_absoluteMinValue" format="integer" />
+        <attr name="sbr_absoluteMaxValue" format="integer" />
+        <attr name="sbr_bgSeekbarRange" format="reference" />
+        <attr name="sbr_bgEdits" format="reference" />
+        <attr name="sbr_barColor" format="color" />
+        <attr name="sbr_ThumbLeft_HighlightColor" format="reference" />
+        <attr name="sbr_ThumbRight_HighlightColor" format="reference" />
+        <attr name="sbr_left_thumb_image" format="reference" />
+        <attr name="sbr_left_thumb_image_pressed" format="reference" />
+        <attr name="sbr_right_thumb_image" format="reference" />
+        <attr name="sbr_right_thumb_image_pressed" format="reference" />
+        <attr name="sbr_edits_ems" format="integer"></attr>
+        <attr name="sbr_show_edits" format="boolean"></attr>
+        <attr name="sbr_data_type" format="enum">
+            <enum name="_integer" value="0" />
+            <enum name="_float" value="1" />
+        </attr>
+    </declare-styleable>
+
+
+    <!--************ SeekbarRange *****************-->
+    <declare-styleable name="DemonstrationButton">
+        <attr name="demo_image" format="reference" />
+        <attr name="demo_image_down" format="reference" />
+        <attr name="demo_status" format="boolean" />
+    </declare-styleable>
+
+</resources>

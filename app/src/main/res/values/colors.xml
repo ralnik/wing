@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorText">#684FA2</color>
+    <color name="colorTitle">#684FA2</color>
+
+<!--SeekBar-->
+    <color name="seekbar_highlight_progress_color">#6750A2</color>
+    <color name="settings_color_edit">#F1F4EB</color>
+
+<!--ListView-->
+    <color name="titleListView">#9684be</color>
+    <color name="colorTextTitleTable">#feffff</color>
+    <color name="colorBorderTitleTable">#a8c6d1</color>
+    <color name="colorTextListitems">#684FA2</color>
+    <color name="colorTextListitemSelected">#feffff</color>
+    <color name="colorTableItemSelected">#ec7a22</color>
+    <color name="itemFirstBG_ListView">#e9e5f3</color>
+    <color name="itemSecondBG_ListView">#ffffff</color>
+    <color name="colorBorderTable">#684fa0</color>
+
+</resources>
