@@ -12,13 +12,12 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.sql.Array;
 import java.util.Arrays;
 import java.util.List;
 
 import ru.ralnik.wing.model.Flat;
 import ru.ralnik.wing.sqlitedb.AppDatabase;
-import ru.ralnik.wing.sqlitedb.FlatRepository;
+
 
 public class JSONParser {
     final String url;
@@ -80,6 +79,7 @@ public class JSONParser {
                     if(urlConnection != null){
                         urlConnection.disconnect();
                     }
+                    Log.d("myDebug","finish");
                 }
             }
         }).start();

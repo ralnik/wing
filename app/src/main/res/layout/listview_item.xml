@@ -6,37 +6,28 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="81dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitStart"
-        app:srcCompat="@drawable/img_table_header" />
-
-    <ImageView
         android:id="@+id/imgBG"
         android:layout_width="match_parent"
-        android:layout_height="17dp"
-        android:src="@drawable/draw_level"
-        android:visibility="gone" />
+        android:layout_height="20dp"
+        android:src="@drawable/draw_level" />
 
     <LinearLayout
         android:id="@+id/row"
         android:layout_width="match_parent"
-        android:layout_height="17dp"
+        android:layout_height="20dp"
         android:background="@drawable/item_selector"
         android:orientation="horizontal"
         android:padding="0dp">
 
         <TextView
             android:id="@+id/colKorpus"
-            android:layout_width="87dp"
+            android:layout_width="44dp"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:gravity="center"
             android:text="2"
             android:textColor="@color/colorTextListitems"
-            android:textSize="6sp" />
+            android:textSize="7sp" />
 
         <FrameLayout
             android:layout_width="1dp"
@@ -45,13 +36,13 @@
 
         <TextView
             android:id="@+id/colFlat"
-            android:layout_width="87dp"
+            android:layout_width="43dp"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:gravity="center"
             android:text="174"
             android:textColor="@color/colorTextListitems"
-            android:textSize="6sp" />
+            android:textSize="7sp" />
 
         <FrameLayout
             android:layout_width="1dp"
@@ -60,12 +51,12 @@
 
         <TextView
             android:id="@+id/colFloor"
-            android:layout_width="87dp"
+            android:layout_width="43dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="18"
             android:textColor="@color/colorTextListitems"
-            android:textSize="6sp" />
+            android:textSize="7sp" />
 
         <FrameLayout
             android:layout_width="1dp"
@@ -74,12 +65,12 @@
 
         <TextView
             android:id="@+id/colRooms"
-            android:layout_width="127dp"
+            android:layout_width="63dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="4"
             android:textColor="@color/colorTextListitems"
-            android:textSize="6sp" />
+            android:textSize="7sp" />
 
         <FrameLayout
             android:layout_width="1dp"
@@ -88,12 +79,12 @@
 
         <TextView
             android:id="@+id/colSquare"
-            android:layout_width="127dp"
+            android:layout_width="63dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="123.8"
             android:textColor="@color/colorTextListitems"
-            android:textSize="6sp" />
+            android:textSize="7sp" />
 
         <FrameLayout
             android:layout_width="1dp"
@@ -102,12 +93,12 @@
 
         <TextView
             android:id="@+id/colCost"
-            android:layout_width="130dp"
+            android:layout_width="65dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="1 568 000"
             android:textColor="@color/colorTextListitems"
-            android:textSize="6sp" />
+            android:textSize="7sp" />
 
         <FrameLayout
             android:layout_width="1dp"
@@ -116,12 +107,12 @@
 
         <TextView
             android:id="@+id/colStatus"
-            android:layout_width="122dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="1"
             android:textColor="@color/colorTextListitems"
-            android:textSize="6sp" />
+            android:textSize="7sp" />
 
         <FrameLayout
             android:layout_width="1dp"

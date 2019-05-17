@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:height="7dp" android:gravity="center_vertical" >
+    <item android:height="4dp" android:gravity="center_vertical" >
 <shape xmlns:android="http://schemas.android.com/apk/res/android"   android:shape="rectangle"  >
-    <corners android:radius="10dp" />
+    <corners android:radius="5dp" />
     <solid android:color="@color/seekbar_highlight_progress_color" />
 </shape>
     </item>

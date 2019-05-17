@@ -219,7 +219,13 @@ public class SeekbarRange extends LinearLayout {
                             if(sbr_dataType == 0){
                                 result = thumb.getValue()+"";
                             }else{
-                                result = String.format("%.2f", (thumb.getValue() + random)).replace(",",".");
+                                //Проверяем если целая часть == получиному значению от ползунка, значит ползунок не двигался, и значение в дробной части не должны менятьсяизменились
+                                //т.е. при однократном нажатии на ползунок, не меняя его позиции, менялось значение в дробной части, а этого не должно быть, значения в дроб.части меняются только тогда года ползунок двигается
+                                if(((int) Math.floor((float)getMinValue())) == value){
+                                    result = getMinValue()+"";
+                                }else {
+                                    result = String.format("%.2f", (thumb.getValue() + random)).replace(",", ".");
+                                }
                             }
                         editMin.setText(result);
                     }
@@ -238,7 +244,13 @@ public class SeekbarRange extends LinearLayout {
                         if(sbr_dataType == 0){
                             result = thumb.getValue()+"";
                         }else{
-                            result = String.format("%.2f", (thumb.getValue() + random)).replace(",",".");
+                            //Проверяем если целая часть == получиному значению от ползунка, значит ползунок не двигался, и значение в дробной части не должны менятьсяизменились
+                            //т.е. при однократном нажатии на ползунок, не меняя его позиции, менялось значение в дробной части, а этого не должно быть, значения в дроб.части меняются только тогда года ползунок двигается
+                                if(((int) Math.floor((float)getMaxValue())) == value){
+                                    result = getMaxValue()+"";
+                                }else {
+                                    result = String.format("%.2f", (thumb.getValue() + random)).replace(",", ".");
+                                }
                         }
                         editMax.setText(result);
                     }
@@ -284,7 +296,6 @@ public class SeekbarRange extends LinearLayout {
 
         public void setAbsoluteMinValue(Float min) {
             seekbar.setMin((int) Math.floor(min));
-            Log.d("myDebug","from class getAbsoluteCOST="+seekbar.getMin());
         }
 
         public void setAbsoluteMaxValue(Float max) {
@@ -301,12 +312,10 @@ public class SeekbarRange extends LinearLayout {
 
         public void setMinValue(float min) {
             thumb1.setValue((int) Math.floor(min));
-            Log.d("myDebug","getMinValue="+thumb1.getValue());
         }
 
         public void setMaxValue(float max) {
             thumb2.setValue((int) Math.floor(max));
-            Log.d("myDebug","getMaxValue="+thumb2.getValue());
         }
 
         public void setShowEdits(Boolean flag) {
@@ -331,5 +340,8 @@ public class SeekbarRange extends LinearLayout {
             return random;
         }
 
-
+        public void setDefaultValue(){
+            setMinValue(seekbar.getMin());
+            setMaxValue(seekbar.getMax());
+        }
 }

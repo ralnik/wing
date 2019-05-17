@@ -140,6 +140,9 @@ public class MainActivity extends AppCompatActivity {
         btn_corpus1 = (DemonsrationButton) findViewById(R.id.btnCorpus1);
         btn_corpus2 = (DemonsrationButton) findViewById(R.id.btnCorpus2);
         btn_corpus3 = (DemonsrationButton) findViewById(R.id.btnCorpus3);
+        btn_corpus1.setTag(1);
+        btn_corpus2.setTag(2);
+        btn_corpus3.setTag(3);
 
 
         btnClear = (ImageView) findViewById(R.id.btnClear);
@@ -164,15 +167,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         float min,max;
-        min = cfg.getMinCost() / 1000;
-        max = cfg.getMaxCost() / 1000;
-        Log.d("myDebug","cost:");
-        Log.d("myDebug","costMin: "+min);
-        Log.d("myDebug","costMax: "+max);
-        //Log.d("myDebug","cost_absolute_min1: " + seekbarCost.getAbsoluteMinValue());
+        min = cfg.getMinCost() / 1000000;
+        max = cfg.getMaxCost() / 1000000;
+
         seekbarCost.setAbsoluteMinValue(min);
         seekbarCost.setAbsoluteMaxValue(max);
-        //Log.d("myDebug","cost_absolute_min2: " + seekbarCost.getAbsoluteMinValue()+" ("+cfg.getMinCost()+")");
         seekbarCost.setMinValue(min);
         seekbarCost.setMaxValue(max);
 
@@ -416,16 +415,43 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void titleOfListviewOnClick(View v){
+    public void btnClearOnClick(View v){
+        btnRoom1.setStatus(false);
+        btnRoom2.setStatus(false);
+        btnRoom3.setStatus(false);
+        btnRoom4.setStatus(false);
+
+        btn_corpus1.setStatus(false);
+        btn_corpus2.setStatus(false);
+        btn_corpus3.setStatus(false);
+
+        seekbarCost.setDefaultValue();
+        seekbarFloor.setDefaultValue();
+        seekbarSquare.setDefaultValue();
 
     }
 
     public void btnSearchOnClick(View v){
-        query = "select * from flats where etag=2";
+        query = "select * from flats where ";
+
+        query = query + " (etag >= "+seekbarFloor.getMinValue() + " and etag <= "+seekbarFloor.getMaxValue()+") ";
+        query = query + " and (ploshad >= " +((Float) seekbarSquare.getMinValue()-0.1) + " and ploshad <= "+((Float) seekbarSquare.getMaxValue()+0.1) + ") ";
+        query = query + " and (price >= " + seekbarCost.getMinValue() + "*1000000" + " and price <= " + seekbarCost.getMaxValue() + "*1000000" + ") ";
+
+        if (btn_corpus1.getStatus()){ query = query + " and corpus="+btn_corpus1.getTag(); }
+        if (btn_corpus2.getStatus()){ query = query + " and corpus="+btn_corpus2.getTag(); }
+        if (btn_corpus3.getStatus()){ query = query + " and corpus="+btn_corpus3.getTag(); }
+
+        if(btnRoom1.getStatus()){ query = query + " and comnat="+btnRoom1.getTag(); }
+        if(btnRoom2.getStatus()){ query = query + " and comnat="+btnRoom2.getTag(); }
+        if(btnRoom3.getStatus()){ query = query + " and comnat="+btnRoom3.getTag(); }
+        if(btnRoom4.getStatus()){ query = query + " and comnat="+btnRoom4.getTag(); }
+
         loadFromSqlite(query + " order by price");
     }
 
     private void loadFromSqlite(String sql) {
+        Log.d(TAG,sql);
         //Log.d(TAG, "mas_size" + new FlatRepository(getApplicationContext()).getAll().size());
         myAdapter adapter = new myAdapter(this, new FlatRepository(this).getFlatsByQuery(sql),0);
         //Log.d("myDebug","adapter.size="+adapter.getCount());
@@ -440,6 +466,35 @@ public class MainActivity extends AppCompatActivity {
         mainPanel.setVisibility(View.GONE);
         settingsPanel.setVisibility(View.GONE);
         resultPanel.setVisibility(View.VISIBLE);
+    }
+
+
+    public void titleOfListviewOnClick(View v){
+        String order = null;
+        switch (v.getId()){
+            case R.id.colKorpus:
+                order = " order by corpus";
+                break;
+            case R.id.colFlat:
+                order = " order by nom_kv";
+                break;
+            case R.id.colFloor:
+                order = " order by etag";
+                break;
+            case R.id.colRooms:
+                order = " order by comnat";
+                break;
+            case R.id.colSquare:
+                order = " order by ploshad";
+                break;
+            case R.id.colCost:
+                order = " order by price";
+                break;
+            case R.id.colStatus:
+                order = " order by status";
+                break;
+        }
+        loadFromSqlite(query + order);
     }
 
     @Override

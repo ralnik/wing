@@ -73,6 +73,10 @@ public class DemonsrationButton extends AppCompatImageView implements OnClickLis
 
     }
 
+    public Boolean getStatus(){
+        return this.demo_status;
+    }
+
 
     @Override
     public void onClick(View v) {

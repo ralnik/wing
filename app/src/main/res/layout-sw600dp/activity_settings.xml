@@ -175,6 +175,6 @@
             android:layout_width="178dp"
             android:layout_height="47dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/btn_save" />
+            app:srcCompat="@drawable/btn_save_option_pressed" />
     </LinearLayout>
 </LinearLayout>

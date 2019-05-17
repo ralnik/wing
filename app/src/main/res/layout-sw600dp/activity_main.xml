@@ -357,7 +357,8 @@
                         android:id="@+id/btnClear"
                         android:layout_width="178dp"
                         android:layout_height="47dp"
-                        app:srcCompat="@drawable/btn_clear" />
+                        app:srcCompat="@drawable/btn_clear_pressed"
+                        android:onClick="btnClearOnClick"/>
 
                     <FrameLayout
                         android:id="@+id/splitLayout1"
@@ -371,9 +372,12 @@
                         android:id="@+id/btnSearch"
                         android:layout_width="178dp"
                         android:layout_height="47dp"
-                        app:srcCompat="@drawable/btn_search"
+                        app:srcCompat="@drawable/btn_search_pressed"
                         android:onClick="btnSearchOnClick"/>
                 </LinearLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
             </LinearLayout>
         </LinearLayout>
 
