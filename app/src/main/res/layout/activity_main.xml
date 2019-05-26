@@ -166,31 +166,31 @@
                         android:id="@+id/btnCorpus1"
                         android:layout_width="57dp"
                         android:layout_height="60dp"
+                        android:onClick="btnCorpusOnClick"
                         android:translationX="85dp"
                         android:translationY="85dp"
                         app:demo_image="@drawable/btn_corpus"
-                        app:demo_image_down="@drawable/btn_corpus1_down"
-                        android:onClick="btnCorpusOnClick" />
+                        app:demo_image_down="@drawable/btn_corpus1_down" />
 
                     <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
                         android:id="@+id/btnCorpus2"
                         android:layout_width="57dp"
                         android:layout_height="61dp"
+                        android:onClick="btnCorpusOnClick"
                         android:translationX="133dp"
                         android:translationY="2dp"
                         app:demo_image="@drawable/btn_corpus"
-                        app:demo_image_down="@drawable/btn_corpus2_down"
-                        android:onClick="btnCorpusOnClick"/>
+                        app:demo_image_down="@drawable/btn_corpus2_down" />
 
                     <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
                         android:id="@+id/btnCorpus3"
                         android:layout_width="57dp"
                         android:layout_height="60dp"
+                        android:onClick="btnCorpusOnClick"
                         android:translationX="190dp"
                         android:translationY="80dp"
                         app:demo_image="@drawable/btn_corpus"
-                        app:demo_image_down="@drawable/btn_corpus3_down"
-                        android:onClick="btnCorpusOnClick"/>
+                        app:demo_image_down="@drawable/btn_corpus3_down" />
 
                 </FrameLayout>
 
@@ -357,8 +357,8 @@
                         android:id="@+id/btnClear"
                         android:layout_width="89dp"
                         android:layout_height="23dp"
-                        app:srcCompat="@drawable/btn_clear_pressed"
-                        android:onClick="btnClearOnClick"/>
+                        android:onClick="btnClearOnClick"
+                        app:srcCompat="@drawable/btn_clear_pressed" />
 
                     <FrameLayout
                         android:id="@+id/splitLayout1"
@@ -372,8 +372,8 @@
                         android:id="@+id/btnSearch"
                         android:layout_width="89dp"
                         android:layout_height="23dp"
-                        app:srcCompat="@drawable/btn_search_pressed"
-                        android:onClick="btnSearchOnClick"/>
+                        android:onClick="btnSearchOnClick"
+                        app:srcCompat="@drawable/btn_search_pressed" />
                 </LinearLayout>
 
                 <FrameLayout
@@ -515,7 +515,7 @@
 
             <TextView
                 android:id="@+id/colStatus"
-                android:layout_width="61dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:onClick="titleOfListviewOnClick"
@@ -545,4 +545,15 @@
             android:choiceMode="singleChoice"
             android:divider="#00000000" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/planPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="vertical"></LinearLayout>
+
 </LinearLayout>

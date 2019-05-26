@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 @Entity(tableName = "flats")
 public class Flat implements Serializable {
@@ -129,6 +130,54 @@ public class Flat implements Serializable {
 
     public void setPlanirovka(String planirovka) {
         this.planirovka = planirovka;
+    }
+
+
+    public static String makePrettyCost(String cost){
+        long realcost=0;
+        realcost = Math.round(Double.valueOf(cost));
+
+        String tempCost =  String.valueOf(realcost);
+        String pattern = null;
+        switch (tempCost.length()){
+            case 6:
+                pattern = "###,###";
+                break;
+            case 7:
+                pattern = "#,###,###";
+                break;
+            case 8:
+                pattern = "##,###,###";
+                break;
+            case 9:
+                pattern = "###,###,###";
+                break;
+            case 10:
+                pattern = "#,###,###,###";
+                break;
+            default:
+                pattern = "###";
+                break;
+        }
+        DecimalFormat mf = new DecimalFormat(pattern);
+        tempCost = mf.format(realcost);
+        return tempCost.replace(","," ");
+    }
+
+    public static String setCorrectStatus(int status){
+        switch (status){
+            case 0:
+                return "Продано";
+
+            case 1:
+                return "Забронированно";
+
+            case 2:
+                return "В продаже";
+
+            default:
+                return status+"";
+        }
     }
 
     @Override

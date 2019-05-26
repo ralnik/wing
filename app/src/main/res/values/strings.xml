@@ -1,15 +1,17 @@
 <resources>
-    <string name="app_name">wing</string>
+    <string name="app_name">Крылья</string>
     <string name="label_countrooms">КОЛИЧЕСТВО КОМНАТ</string>
     <string name="title_parameters">ПАРАМЕТРЫ</string>
     <string name="title_corpus">КОРПУС</string>
     <string name="title_floor">ЭТАЖ</string>
-    <string name="title_cost">ЦЕНА(РУБ. М<sup>2</sup> )</string>
+    <string name="title_cost">ЦЕНА</string>
     <string name="title_square">ПЛОЩАДЬ (М<sup>2</sup> )</string>
     <string name="settings_title_attention">Смена адреса сервера и пароль влияют на работоспособность всей системы \n
         Перед внесением изменений рекомендуем связаться с \n
         системным администратором
     </string>
+    <string name="title_out_infra">ИНФРАСТРУКТУРА РАЙОНА</string>
+    <string name="title_plan">ВЫБРАННЫЕ ПЛАНИРОВКИ</string>
 
 <!--Название столбцов в таблице-->
     <string name="korpus">КОРПУС</string>
@@ -20,4 +22,20 @@
     <string name="cost">ЦЕНА</string>
     <string name="status">СТАТУС КВАРТИРЫ</string>
     <string name="no_row">Нет записей удовлетворяющих заданным условиям.</string>
+
+    <!--Название квартир   -->
+    <string name="one_bedroom">ОДНОКОМНАТНАЯ КВАРТИРА</string>
+    <string name="two_bedroom">ДВУХКОМНАТНАЯ КВАРТИРА</string>
+    <string name="three_bedroom">ТРЕХКОМНАТНАЯ КВАРТИРА</string>
+    <string name="four_bedroom">ЧЕТЫРЕХКОМНАТНАЯ КВАРТИРА</string>
+    <string-array name="name_flat">
+        <item>ОДНОКОМНАТНАЯ КВАРТИРА</item>
+        <item>ДВУХКОМНАТНАЯ КВАРТИРА</item>
+        <item>ТРЕХКОМНАТНАЯ КВАРТИРА</item>
+        <item>ЧЕТЫРЕХКОМНАТНАЯ КВАРТИРА</item>
+    </string-array>
+
+    <!--СТАТУСЫ -->
+
+
 </resources>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/colorTitle"
+            android:gravity="center"
+            android:text="@string/title_out_infra"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/btnClose"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="13dp"
+            app:srcCompat="@drawable/btn_close" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="598dp"
+        android:layout_height="500dp"
+        android:background="@drawable/img_bg_out_infra"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="31dp"
+            android:orientation="horizontal">
+
+            <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
+                android:id="@+id/btnDoy"
+                android:layout_width="100dp"
+                android:layout_height="57dp"
+                android:layout_marginEnd="169dp"
+                app:demo_image="@drawable/btn_doy"
+                app:demo_image_down="@drawable/btn_doy_down" />
+
+            <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
+                android:id="@+id/btnTrc"
+                android:layout_width="98dp"
+                android:layout_height="57dp"
+                app:demo_image="@drawable/btn_trc"
+                app:demo_image_down="@drawable/btn_trc_down"
+                 />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="9dp"
+            android:orientation="horizontal">
+
+            <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
+                android:id="@+id/btnSchool"
+                android:layout_width="129dp"
+                android:layout_height="57dp"
+                android:layout_marginEnd="140dp"
+                app:demo_image="@drawable/btn_school"
+                app:demo_image_down="@drawable/btn_school_down" />
+
+            <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
+                android:id="@+id/btnSupermarket"
+                android:layout_width="194dp"
+                android:layout_height="57dp"
+                app:demo_image="@drawable/btn_supermarket"
+                app:demo_image_down="@drawable/btn_supermarket_down" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="9dp"
+            android:orientation="horizontal">
+
+            <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
+                android:id="@+id/btnChildSection"
+                android:layout_width="207dp"
+                android:layout_height="57dp"
+                android:layout_marginEnd="64dp"
+                app:demo_image="@drawable/btn_child_section"
+                app:demo_image_down="@drawable/btn_child_section_down" />
+
+            <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
+                android:id="@+id/btnFitness"
+                android:layout_width="200dp"
+                android:layout_height="57dp"
+                app:demo_image="@drawable/btn_fitnes"
+                app:demo_image_down="@drawable/btn_fitnes_down" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="9dp"
+            android:orientation="horizontal">
+
+            <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
+                android:id="@+id/btnInstitutes"
+                android:layout_width="111dp"
+                android:layout_height="57dp"
+                android:layout_marginEnd="159dp"
+                app:demo_image="@drawable/btn_institutes"
+                app:demo_image_down="@drawable/btn_institutes_down" />
+
+            <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
+                android:id="@+id/btnRestaurant"
+                android:layout_width="226dp"
+                android:layout_height="57dp"
+                app:demo_image="@drawable/btn_restaurant"
+                app:demo_image_down="@drawable/btn_restaurant_down" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="9dp"
+            android:orientation="horizontal">
+
+            <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
+                android:id="@+id/btnHospital"
+                android:layout_width="189dp"
+                android:layout_height="57dp"
+                android:layout_marginEnd="84dp"
+                app:demo_image="@drawable/btn_hospital"
+                app:demo_image_down="@drawable/btn_hospital_down" />
+
+            <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
+                android:id="@+id/btnMovies"
+                android:layout_width="172dp"
+                android:layout_height="57dp"
+                app:demo_image="@drawable/btn_movies"
+                app:demo_image_down="@drawable/btn_movies_down" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="9dp"
+            android:orientation="horizontal">
+
+            <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
+                android:id="@+id/btnDrugstore"
+                android:layout_width="129dp"
+                android:layout_height="57dp"
+                android:layout_marginEnd="169dp"
+                app:demo_image="@drawable/btn_drugstore"
+                app:demo_image_down="@drawable/btn_drugstore_down" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

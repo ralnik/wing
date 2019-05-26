@@ -4,7 +4,13 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+
+
+import ru.ralnik.wing.MainActivity;
 import ru.ralnik.wing.R;
 import ru.ralnik.wing.httpPlayer.HttpPlayerFactory;
 import ru.ralnik.wing.model.Flat;
@@ -16,11 +22,28 @@ public class listviewItemSelected implements AdapterView.OnItemClickListener {
     public static String ID = null;
 
     Context context;
+    LinearLayout planPanel;
+    LinearLayout resultPanel;
+    View viewPlanPanel;
+    TextView titleCountRooms,titlePrice,textCorpus,textNumberFlats,textFloor,textSquare,textStatus;
+    ImageView imgPlanFloor;
+    ImageView imgPlanFlat;
 //    vvvv VVVV;
 
-    public listviewItemSelected(Context context) {
+    public listviewItemSelected(Context context, LinearLayout planPanel, LinearLayout resultPanel, View viewPlanPanel) {
         this.context = context;
-
+        this.planPanel = planPanel;
+        this.resultPanel = resultPanel;
+        this.viewPlanPanel = viewPlanPanel;
+        titleCountRooms = (TextView) viewPlanPanel.findViewById(R.id.titleCountRooms);
+        titlePrice = (TextView) viewPlanPanel.findViewById(R.id.titlePrice);
+        textCorpus = (TextView) viewPlanPanel.findViewById(R.id.textCorpus);
+        textNumberFlats = (TextView) viewPlanPanel.findViewById(R.id.textNumberFlats);
+        textFloor = (TextView) viewPlanPanel.findViewById(R.id.textFloor);
+        textSquare = (TextView) viewPlanPanel.findViewById(R.id.textSquare);
+        textStatus = (TextView) viewPlanPanel.findViewById(R.id.textStatus);
+        imgPlanFlat = (ImageView) viewPlanPanel.findViewById(R.id.imgPlanFlat);
+        imgPlanFloor = (ImageView) viewPlanPanel.findViewById(R.id.imgPlanFloor);
     }
 
     @Override
@@ -111,6 +134,49 @@ public class listviewItemSelected implements AdapterView.OnItemClickListener {
         HttpPlayerFactory.getInstance(context).getCommand().selectById(8);
 
 
+                        switch (flat.getComnat()){
+                    case 1:
+                        titleCountRooms.setText(R.string.one_bedroom);
+                        break;
+                    case 2:
+                        titleCountRooms.setText(R.string.two_bedroom);
+                        break;
+                    case 3:
+                        titleCountRooms.setText(R.string.three_bedroom);
+                        break;
+                    case 4:
+                        titleCountRooms.setText(R.string.four_bedroom);
+                        break;
+                }
+                titlePrice.setText(Flat.makePrettyCost(flat.getPrice().toString())+" руб.");
+                textCorpus.setText(flat.getCorpus()+"");
+                textNumberFlats.setText(flat.getNom_kv()+"");
+                textFloor.setText(flat.getEtag()+"");
+                textSquare.setText(flat.getPloshad()+"");
+                textStatus.setText(Flat.setCorrectStatus(flat.getStatus()));
+        //***********Меняем планировку на ту, что нада*****************
+        //Example:  plan_floor9_corpus2
+        String fileNameFloor = "plan_floor"+flat.getEtag()+"_corpus"+flat.getCorpus();
+
+        //Example: plan_flat95_floor6_corpus2
+        String fileNameFlat = "plan_flat" + flat.getNom_kv() + "_floor" + flat.getEtag() + "_corpus"+flat.getCorpus();
+
+        int floorResID=0;
+        int flatResID=0;
+        try {
+            floorResID = context.getResources().getIdentifier(fileNameFloor, "drawable", context.getPackageName());
+            flatResID = context.getResources().getIdentifier(fileNameFlat, "drawable", context.getPackageName());
+        }catch (Exception e){
+            Log.d("myDebug"," "+e);
+        }
+        imgPlanFloor.setImageResource(floorResID);
+        imgPlanFlat.setImageResource(flatResID);
+        //*******************************************************
+        MainActivity.adapterPosition = position;
+        this.resultPanel.setVisibility(View.GONE);
+        this.planPanel.setVisibility(View.VISIBLE);
 
     }
+
+
 }

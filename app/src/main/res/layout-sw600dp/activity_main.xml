@@ -12,38 +12,38 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="211dp"
+        android:layout_height="240dp"
         android:background="@drawable/img_header_bg">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="62dp"
+            android:layout_height="67dp"
             android:gravity="center|end"
             android:orientation="horizontal">
 
             <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
                 android:id="@+id/btnPause"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
                 android:layout_marginEnd="23dp"
+                android:onClick="btnMenuOnClick"
                 app:demo_image="@drawable/btn_pause"
-                app:demo_image_down="@drawable/btn_pause_down"
-                android:onClick="btnMenuOnClick"/>
+                app:demo_image_down="@drawable/btn_pause_down" />
 
             <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
                 android:id="@+id/btnVolume"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginEnd="23dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="28dp"
+                android:onClick="btnMenuOnClick"
                 app:demo_image="@drawable/btn_volume"
-                app:demo_image_down="@drawable/btn_volume_down"
-                android:onClick="btnMenuOnClick" />
+                app:demo_image_down="@drawable/btn_volume_down" />
 
             <ImageView
                 android:id="@+id/btnOption"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginEnd="55dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="66dp"
                 android:onClick="btnMenuOnClick"
                 app:srcCompat="@drawable/btn_option" />
         </LinearLayout>
@@ -58,65 +58,65 @@
 
             <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
                 android:id="@+id/btnLocation"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_marginEnd="20dp"
+                android:layout_width="94dp"
+                android:layout_height="94dp"
+                android:layout_marginEnd="24dp"
+                android:onClick="btnOnClick"
                 app:demo_image="@drawable/btn_location"
-                app:demo_image_down="@drawable/btn_location_down"
-                android:onClick="btnOnClick"/>
+                app:demo_image_down="@drawable/btn_location_down" />
 
             <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
                 android:id="@+id/btnInfraRaion"
-                android:layout_width="81dp"
-                android:layout_height="89dp"
-                android:layout_marginEnd="29dp"
+                android:layout_width="101dp"
+                android:layout_height="107dp"
+                android:layout_marginEnd="30dp"
+                android:onClick="btnOnClick"
                 app:demo_image="@drawable/btn_infraraion"
-                app:demo_image_down="@drawable/btn_infraraion_down"
-                android:onClick="btnOnClick"/>
+                app:demo_image_down="@drawable/btn_infraraion_down" />
 
             <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
                 android:id="@+id/btnTransport"
-                android:layout_width="58dp"
-                android:layout_height="75dp"
-                android:layout_marginEnd="21dp"
+                android:layout_width="72dp"
+                android:layout_height="94dp"
+                android:layout_marginEnd="24dp"
+                android:onClick="btnOnClick"
                 app:demo_image="@drawable/btn_transport"
-                app:demo_image_down="@drawable/btn_transport_down"
-                android:onClick="btnOnClick"/>
+                app:demo_image_down="@drawable/btn_transport_down" />
 
             <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
                 android:id="@+id/btnInfra"
-                android:layout_width="98dp"
-                android:layout_height="75dp"
-                android:layout_marginEnd="19dp"
+                android:layout_width="118dp"
+                android:layout_height="90dp"
+                android:layout_marginEnd="23dp"
+                android:onClick="btnOnClick"
                 app:demo_image="@drawable/btn_infra"
-                app:demo_image_down="@drawable/btn_infra_down"
-                android:onClick="btnOnClick" />
+                app:demo_image_down="@drawable/btn_infra_down" />
 
             <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
                 android:id="@+id/btnComfort"
-                android:layout_width="58dp"
-                android:layout_height="75dp"
-                android:layout_marginEnd="38dp"
+                android:layout_width="70dp"
+                android:layout_height="90dp"
+                android:layout_marginEnd="30dp"
+                android:onClick="btnOnClick"
                 app:demo_image="@drawable/btn_comfort"
-                app:demo_image_down="@drawable/btn_comfort_down"
-                android:onClick="btnOnClick" />
+                app:demo_image_down="@drawable/btn_comfort_down" />
 
             <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
                 android:id="@+id/btnArchitecture"
-                android:layout_width="62dp"
-                android:layout_height="75dp"
-                android:layout_marginEnd="35dp"
+                android:layout_width="75dp"
+                android:layout_height="90dp"
+                android:layout_marginEnd="30dp"
+                android:onClick="btnOnClick"
                 app:demo_image="@drawable/btn_archi"
-                app:demo_image_down="@drawable/btn_archi_down"
-                android:onClick="btnOnClick" />
+                app:demo_image_down="@drawable/btn_archi_down" />
 
             <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
                 android:id="@+id/btnPlaning"
-                android:layout_width="62dp"
-                android:layout_height="75dp"
+                android:layout_width="75dp"
+                android:layout_height="90dp"
+                android:onClick="btnOnClick"
                 app:demo_image="@drawable/btn_planing"
-                app:demo_image_down="@drawable/btn_planing_down"
-                android:onClick="btnOnClick" />
+                app:demo_image_down="@drawable/btn_planing_down" />
         </LinearLayout>
     </FrameLayout>
 
@@ -164,33 +164,36 @@
 
                     <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
                         android:id="@+id/btnCorpus1"
-                        android:layout_width="114dp"
-                        android:layout_height="121dp"
-                        android:translationX="170dp"
-                        android:translationY="170dp"
+                        android:layout_width="132dp"
+                        android:layout_height="142dp"
+                        android:onClick="btnCorpusOnClick"
+                        android:translationX="200dp"
+                        android:translationY="200dp"
                         app:demo_image="@drawable/btn_corpus"
                         app:demo_image_down="@drawable/btn_corpus1_down"
-                        android:onClick="btnCorpusOnClick" />
+                        app:demo_status="true" />
 
                     <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
                         android:id="@+id/btnCorpus2"
-                        android:layout_width="115dp"
-                        android:layout_height="122dp"
-                        android:translationX="266dp"
-                        android:translationY="5dp"
+                        android:layout_width="132dp"
+                        android:layout_height="142dp"
+                        android:onClick="btnCorpusOnClick"
+                        android:translationX="313dp"
+                        android:translationY="7dp"
                         app:demo_image="@drawable/btn_corpus"
                         app:demo_image_down="@drawable/btn_corpus2_down"
-                        android:onClick="btnCorpusOnClick"/>
+                        app:demo_status="true" />
 
                     <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
                         android:id="@+id/btnCorpus3"
-                        android:layout_width="114dp"
-                        android:layout_height="121dp"
-                        android:translationX="380dp"
-                        android:translationY="159dp"
+                        android:layout_width="132dp"
+                        android:layout_height="142dp"
+                        android:onClick="btnCorpusOnClick"
+                        android:translationX="446dp"
+                        android:translationY="185dp"
                         app:demo_image="@drawable/btn_corpus"
                         app:demo_image_down="@drawable/btn_corpus3_down"
-                        android:onClick="btnCorpusOnClick"/>
+                        app:demo_status="true" />
 
                 </FrameLayout>
 
@@ -218,41 +221,41 @@
                     android:id="@+id/layoutRoomButtons"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="9dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="11dp"
                     android:orientation="horizontal">
 
                     <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
                         android:id="@+id/btnRoom1"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginEnd="30dp"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:layout_marginEnd="36dp"
                         android:onClick="btnCountRoomsOnClick"
                         app:demo_image="@drawable/btn_room1"
                         app:demo_image_down="@drawable/btn_room1_down" />
 
                     <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
                         android:id="@+id/btnRoom2"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginEnd="30dp"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:layout_marginEnd="36dp"
                         android:onClick="btnCountRoomsOnClick"
                         app:demo_image="@drawable/btn_room2"
                         app:demo_image_down="@drawable/btn_room2_down" />
 
                     <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
                         android:id="@+id/btnRoom3"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginEnd="30dp"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:layout_marginEnd="36dp"
                         android:onClick="btnCountRoomsOnClick"
                         app:demo_image="@drawable/btn_room3"
                         app:demo_image_down="@drawable/btn_room3_down" />
 
                     <ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton
                         android:id="@+id/btnRoom4"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
                         android:onClick="btnCountRoomsOnClick"
                         app:demo_image="@drawable/btn_room4"
                         app:demo_image_down="@drawable/btn_room4_down" />
@@ -355,10 +358,10 @@
 
                     <ImageView
                         android:id="@+id/btnClear"
-                        android:layout_width="178dp"
-                        android:layout_height="47dp"
-                        app:srcCompat="@drawable/btn_clear_pressed"
-                        android:onClick="btnClearOnClick"/>
+                        android:layout_width="214dp"
+                        android:layout_height="56dp"
+                        android:onClick="btnClearOnClick"
+                        app:srcCompat="@drawable/btn_clear_pressed" />
 
                     <FrameLayout
                         android:id="@+id/splitLayout1"
@@ -372,12 +375,13 @@
                         android:id="@+id/btnSearch"
                         android:layout_width="178dp"
                         android:layout_height="47dp"
-                        app:srcCompat="@drawable/btn_search_pressed"
-                        android:onClick="btnSearchOnClick"/>
+                        android:onClick="btnSearchOnClick"
+                        app:srcCompat="@drawable/btn_search_pressed" />
                 </LinearLayout>
+
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -514,7 +518,7 @@
 
             <TextView
                 android:id="@+id/colStatus"
-                android:layout_width="122dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:onClick="titleOfListviewOnClick"
@@ -528,6 +532,7 @@
                 android:background="@color/colorBorderTitleTable" />
 
         </LinearLayout>
+
         <TextView
             android:id="@+id/textNoRow"
             android:layout_width="match_parent"
@@ -544,4 +549,15 @@
             android:choiceMode="singleChoice"
             android:divider="#00000000" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/planPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="vertical"></LinearLayout>
+
 </LinearLayout>

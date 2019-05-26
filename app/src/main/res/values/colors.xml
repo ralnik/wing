@@ -6,6 +6,7 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorText">#684FA2</color>
     <color name="colorTitle">#684FA2</color>
+    <color name="color_bottom_border">#b4a8d0</color>
 
 <!--SeekBar-->
     <color name="seekbar_highlight_progress_color">#6750A2</color>

@@ -2,6 +2,7 @@ package ru.ralnik.wing;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,10 +25,12 @@ import java.util.ArrayList;
 import ru.ralnik.wing.config.myConfig;
 import ru.ralnik.wing.httpPlayer.HttpPlayerFactory;
 import ru.ralnik.wing.httpPlayer.PlayerCommands;
+import ru.ralnik.wing.model.Flat;
 import ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton;
 import ru.ralnik.wing.myLibrary.customListView.listviewItemSelected;
 import ru.ralnik.wing.myLibrary.customListView.myAdapter;
 import ru.ralnik.wing.myseekbarrange.SeekbarRange;
+import ru.ralnik.wing.sqlitedb.CreateSQLQuery;
 import ru.ralnik.wing.sqlitedb.FlatRepository;
 
 
@@ -36,6 +39,26 @@ public class MainActivity extends AppCompatActivity {
     ScrollView mainPanel;
     LinearLayout resultPanel;
     LinearLayout settingsPanel;
+    LinearLayout planPanel;
+
+    int MAIN_PANEL = 0;
+    int RESULT_PANEL = 1;
+    int SETTINGS_PANEL = 2;
+    int PLAN_PANEL = 3;
+
+    //--------Controll PLAN--------
+    private View viewPlanPanel;
+    private TextView titleCountRooms;
+    private TextView titlePrice;
+    private TextView textCorpus;
+    private TextView textNumberFlats;
+    private TextView textFloor;
+    private TextView textSquare;
+    private TextView textStatus;
+    private ImageView btnLast;
+    private ImageView btnNext;
+    private ImageView imgPlanFlat;
+    private ImageView imgPlanFloor;
 
     //--------Controll Settings--------
     private View viewSettingPanel;
@@ -80,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
     //---------OTHER VARIABLES--------------
     TextView textNoRow;
     ListView listview;
+    myAdapter adapter;
+    public static int adapterPosition;
     ArrayList<Integer> ListClearFilter = new ArrayList<>();
 
     myConfig cfg;
@@ -103,15 +128,15 @@ public class MainActivity extends AppCompatActivity {
 
         initObjects();
         initSettings();
+        initPlans();
     }
 
     private void initObjects() {
         mainPanel = (ScrollView) findViewById(R.id.mainLayout);
         resultPanel = (LinearLayout) findViewById(R.id.resultPanel);
         settingsPanel = (LinearLayout) findViewById(R.id.settingsLayout);
-        mainPanel.setVisibility(View.VISIBLE);
-        resultPanel.setVisibility(View.GONE);
-        settingsPanel.setVisibility(View.GONE);
+        planPanel = (LinearLayout) findViewById(R.id.planPanel);
+        changePanel(MAIN_PANEL);
 
         textNoRow = (TextView) findViewById(R.id.textNoRow);
         listview = (ListView) findViewById(R.id.listview);
@@ -119,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
         btnOption = (ImageView) findViewById(R.id.btnOption);
         btnPause = (DemonsrationButton) findViewById(R.id.btnPause);
         btnVolume = (DemonsrationButton) findViewById(R.id.btnVolume);
+        btnVolume.setStatus(true);
 
         btnLocation = (DemonsrationButton) findViewById(R.id.btnLocation);
         btnInfraRaion = (DemonsrationButton) findViewById(R.id.btnInfraRaion);
@@ -140,9 +166,9 @@ public class MainActivity extends AppCompatActivity {
         btn_corpus1 = (DemonsrationButton) findViewById(R.id.btnCorpus1);
         btn_corpus2 = (DemonsrationButton) findViewById(R.id.btnCorpus2);
         btn_corpus3 = (DemonsrationButton) findViewById(R.id.btnCorpus3);
-        btn_corpus1.setTag(1);
-        btn_corpus2.setTag(2);
-        btn_corpus3.setTag(3);
+        btn_corpus1.setTag(1); btn_corpus1.setStatus(false);
+        btn_corpus2.setTag(2); btn_corpus2.setStatus(false);
+        btn_corpus3.setTag(3); btn_corpus3.setStatus(false);
 
 
         btnClear = (ImageView) findViewById(R.id.btnClear);
@@ -187,6 +213,22 @@ public class MainActivity extends AppCompatActivity {
         seekbarSquare.setMinValue(cfg.getMinSquare());
         seekbarSquare.setMaxValue(cfg.getMaxSquare());
 
+    }
+
+    private void initPlans(){
+        viewPlanPanel = this.getLayoutInflater().inflate(R.layout.show_planning_activity, null);;
+        titleCountRooms = (TextView) viewPlanPanel.findViewById(R.id.titleCountRooms);
+        titlePrice = (TextView) viewPlanPanel.findViewById(R.id.titlePrice);
+        textCorpus = (TextView) viewPlanPanel.findViewById(R.id.textCorpus);
+        textNumberFlats = (TextView) viewPlanPanel.findViewById(R.id.textNumberFlats);
+        textFloor = (TextView) viewPlanPanel.findViewById(R.id.textFloor);
+        textSquare = (TextView) viewPlanPanel.findViewById(R.id.textSquare);
+        textStatus = (TextView) viewPlanPanel.findViewById(R.id.textStatus);
+        btnLast = (ImageView) viewPlanPanel.findViewById(R.id.btnLast);
+        btnNext = (ImageView) viewPlanPanel.findViewById(R.id.btnNext);
+        imgPlanFlat = (ImageView) viewPlanPanel.findViewById(R.id.imgPlanFlat);
+        imgPlanFloor = (ImageView) viewPlanPanel.findViewById(R.id.imgPlanFloor);
+        planPanel.addView(viewPlanPanel);
     }
 
     private void initSettings(){
@@ -351,14 +393,18 @@ public class MainActivity extends AppCompatActivity {
     public void btnMenuOnClick(View v){
         switch (v.getId()){
             case R.id.btnOption:
-                mainPanel.setVisibility(View.GONE);
-                resultPanel.setVisibility(View.GONE);
-                settingsPanel.setVisibility(View.VISIBLE);
+                changePanel(SETTINGS_PANEL);
                 break;
             case R.id.btnPause:
+                if (btnPause.getStatus()) {
+                    vvvv.stop();
+                }else{
+                    vvvv.play();
+                }
                 btnPause.setStatus();
                 break;
             case R.id.btnVolume:
+                vvvv.volumeOnOff();
                 btnVolume.setStatus();
                 break;
         }
@@ -376,24 +422,39 @@ public class MainActivity extends AppCompatActivity {
         switch(v.getId()){
             case R.id.btnLocation:
                 btnLocation.setStatus();
+                vvvv.selectById(1);
+                btnPause.setStatus(true);
                 break;
             case R.id.btnInfraRaion:
                 btnInfraRaion.setStatus();
+                vvvv.selectById(2);
+                new OuterInfraActivity(this);
+                btnPause.setStatus(true);
                 break;
             case R.id.btnTransport:
                 btnTransport.setStatus();
+                vvvv.selectById(3);
+                btnPause.setStatus(true);
                 break;
             case R.id.btnInfra:
                 btnInfra.setStatus();
+                vvvv.selectById(4);
+                btnPause.setStatus(true);
                 break;
             case R.id.btnComfort:
                 btnComfort.setStatus();
+                vvvv.selectById(5);
+                btnPause.setStatus(true);
                 break;
             case R.id.btnArchitecture:
                 btnArchitecture.setStatus();
+                vvvv.selectById(6);
+                btnPause.setStatus(true);
                 break;
             case R.id.btnPlaning:
                 btnPlaning.setStatus();
+                vvvv.selectById(7);
+                btnPause.setStatus(true);
                 break;
         }
     }
@@ -432,40 +493,57 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnSearchOnClick(View v){
-        query = "select * from flats where ";
+        CreateSQLQuery sql = new CreateSQLQuery("select * from flats where status>0 ");
 
-        query = query + " (etag >= "+seekbarFloor.getMinValue() + " and etag <= "+seekbarFloor.getMaxValue()+") ";
-        query = query + " and (ploshad >= " +((Float) seekbarSquare.getMinValue()-0.1) + " and ploshad <= "+((Float) seekbarSquare.getMaxValue()+0.1) + ") ";
-        query = query + " and (price >= " + seekbarCost.getMinValue() + "*1000000" + " and price <= " + seekbarCost.getMaxValue() + "*1000000" + ") ";
+        sql.whereRange("etag",
+                seekbarFloor.getMinValue().toString(),
+                seekbarFloor.getMaxValue().toString()
+        );
 
-        if (btn_corpus1.getStatus()){ query = query + " and corpus="+btn_corpus1.getTag(); }
-        if (btn_corpus2.getStatus()){ query = query + " and corpus="+btn_corpus2.getTag(); }
-        if (btn_corpus3.getStatus()){ query = query + " and corpus="+btn_corpus3.getTag(); }
+        sql.whereRange("ploshad",
+                ((Float) seekbarSquare.getMinValue()-0.1) + " ",
+                ((Float) seekbarSquare.getMaxValue()+0.1) + " "
+        );
 
-        if(btnRoom1.getStatus()){ query = query + " and comnat="+btnRoom1.getTag(); }
-        if(btnRoom2.getStatus()){ query = query + " and comnat="+btnRoom2.getTag(); }
-        if(btnRoom3.getStatus()){ query = query + " and comnat="+btnRoom3.getTag(); }
-        if(btnRoom4.getStatus()){ query = query + " and comnat="+btnRoom4.getTag(); }
+        sql.whereRange("price",
+                seekbarCost.getMinValue() + "*1000000",
+                seekbarCost.getMaxValue() + "*1000000"
+        );
 
+
+        sql.whereIN("corpus",
+                     btn_corpus1,
+                     btn_corpus2,
+                     btn_corpus3
+        );
+
+        sql.whereIN("comnat",
+                btnRoom1,
+                btnRoom2,
+                btnRoom3,
+                btnRoom4
+        );
+
+        query = sql.toString();
         loadFromSqlite(query + " order by price");
     }
 
     private void loadFromSqlite(String sql) {
         Log.d(TAG,sql);
         //Log.d(TAG, "mas_size" + new FlatRepository(getApplicationContext()).getAll().size());
-        myAdapter adapter = new myAdapter(this, new FlatRepository(this).getFlatsByQuery(sql),0);
+        adapter = new myAdapter(this, new FlatRepository(this).getFlatsByQuery(sql),0);
         //Log.d("myDebug","adapter.size="+adapter.getCount());
         if(adapter.getCount() == 0 ){
             textNoRow.setVisibility(View.VISIBLE);
         }else{
             textNoRow.setVisibility(View.GONE);
         }
+        adapterPosition = 0;
         listview.setAdapter(adapter);
-        listview.setOnItemClickListener(new listviewItemSelected(this));
+        listview.setOnItemClickListener(new listviewItemSelected(this, planPanel, resultPanel,viewPlanPanel));
 
-        mainPanel.setVisibility(View.GONE);
-        settingsPanel.setVisibility(View.GONE);
-        resultPanel.setVisibility(View.VISIBLE);
+
+        changePanel(RESULT_PANEL);
     }
 
 
@@ -500,11 +578,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         // super.onBackPressed();
-        if(settingsPanel.getVisibility() == View.VISIBLE || resultPanel.getVisibility() == View.VISIBLE) {
-            if(settingsPanel.getVisibility() == View.VISIBLE){saveSettings();}
-            mainPanel.setVisibility(View.VISIBLE);
-            settingsPanel.setVisibility(View.GONE);
-            resultPanel.setVisibility(View.GONE);
+        if(settingsPanel.getVisibility() == View.VISIBLE || resultPanel.getVisibility() == View.VISIBLE || planPanel.getVisibility() == View.VISIBLE) {
+            if(settingsPanel.getVisibility() == View.VISIBLE){
+                saveSettings();
+                changePanel(MAIN_PANEL);
+            }
+
+            if(resultPanel.getVisibility() == View.VISIBLE){
+                changePanel(MAIN_PANEL);
+            }
+
+            if(planPanel.getVisibility() == View.VISIBLE){
+                changePanel(RESULT_PANEL);
+            }
         }else {
             //если будет нажата кнопка назад на самом планшете, то программы свернется и не закроется
             Intent intent = new Intent();
@@ -526,5 +612,93 @@ public class MainActivity extends AppCompatActivity {
                 btn_corpus3.setStatus();
                 break;
         }
+    }
+
+    public void changePanel(int namePanel){
+        mainPanel.setVisibility(View.GONE);
+        resultPanel.setVisibility(View.GONE);
+        settingsPanel.setVisibility(View.GONE);
+        planPanel.setVisibility(View.GONE);
+
+        switch (namePanel){
+            case 0:
+                mainPanel.setVisibility(View.VISIBLE);
+                break;
+            case 1:
+                resultPanel.setVisibility(View.VISIBLE);
+                break;
+            case 2:
+                settingsPanel.setVisibility(View.VISIBLE);
+                break;
+            case 3:
+                planPanel.setVisibility(View.VISIBLE);
+                break;
+        }
+    }
+
+    public void btnControllingPlan(View v){
+        switch(v.getId()){
+            case R.id.btnNext:
+                if(adapterPosition < adapter.getCount()){
+                    adapterPosition++;
+                }
+                break;
+            case R.id.btnLast:
+                if (adapterPosition > 0){
+                    adapterPosition--;
+                }
+                break;
+        }
+
+        loadDataInPlanPanel(adapterPosition);
+        // первый элемент списка
+        listview.performItemClick(listview.getAdapter().
+                getView(adapterPosition, null, null), adapterPosition, listview.getAdapter().getItemId(adapterPosition));
+        listview.setSelection(adapterPosition);
+    }
+
+
+    private void loadDataInPlanPanel(int positon){
+        Cursor cursor = (Cursor) adapter.getItem(positon);
+        String ID = cursor.getString(cursor.getColumnIndex("_id"));
+        Flat flat = new FlatRepository(getApplicationContext()).findById(ID);
+        switch (flat.getComnat()){
+            case 1:
+                titleCountRooms.setText(R.string.one_bedroom);
+                break;
+            case 2:
+                titleCountRooms.setText(R.string.two_bedroom);
+                break;
+            case 3:
+                titleCountRooms.setText(R.string.three_bedroom);
+                break;
+            case 4:
+                titleCountRooms.setText(R.string.four_bedroom);
+                break;
+        }
+        titlePrice.setText(Flat.makePrettyCost(flat.getPrice().toString())+" руб.");
+        textCorpus.setText(flat.getCorpus()+"");
+        textNumberFlats.setText(flat.getNom_kv()+"");
+        textFloor.setText(flat.getEtag()+"");
+        textSquare.setText(flat.getPloshad()+"");
+        textStatus.setText(Flat.setCorrectStatus(flat.getStatus()));
+        //***********Меняем планировку на ту, что нада*****************
+        //Example:  plan_floor9_corpus2
+        String fileNameFloor = "plan_floor"+flat.getEtag()+"_corpus"+flat.getCorpus();
+
+        //Example: plan_flat95_floor6_corpus2
+        String fileNameFlat = "plan_flat" + flat.getNom_kv() + "_floor" + flat.getEtag() + "_corpus"+flat.getCorpus();
+
+        int floorResID=0;
+        int flatResID=0;
+        try {
+            floorResID = getResources().getIdentifier(fileNameFloor, "drawable", getPackageName());
+            flatResID =  getResources().getIdentifier(fileNameFlat, "drawable", getPackageName());
+        }catch (Exception e){
+            Log.d("myDebug"," "+e);
+        }
+        imgPlanFloor.setImageResource(floorResID);
+        imgPlanFlat.setImageResource(flatResID);
+        //*******************************************************
     }
 }

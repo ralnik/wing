@@ -2,7 +2,9 @@ package ru.ralnik.wing.myLibrary.customListView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +13,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
-
 import ru.ralnik.wing.R;
+import ru.ralnik.wing.model.Flat;
 
 
 public class myAdapter extends CursorAdapter {
@@ -21,23 +22,28 @@ public class myAdapter extends CursorAdapter {
     public Context context;
     private LayoutInflater mInflater;
     //private int size;
+    View root;
+    ViewHolder holder;
+    ImageView imageBG;
 
     public myAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);
         //this.size = c.getCount();
         this.context = context;
+        listviewItemSelected.ID = null;
     }
     /*
     public int getSize(){
         return this.size;
     }*/
 
+
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        View root = mInflater.from(context).inflate(R.layout.listview_item, parent, false);
-        ViewHolder holder = new ViewHolder();
+        root = mInflater.from(context).inflate(R.layout.listview_item, parent, false);
+        holder = new ViewHolder();
 
-        ImageView imageBG = (ImageView) root.findViewById(R.id.imgBG);
+        imageBG = (ImageView) root.findViewById(R.id.imgBG);
         LinearLayout row = (LinearLayout) root.findViewById(R.id.row);
         TextView column1 = (TextView) root.findViewById(R.id.colKorpus);
         TextView column2 = (TextView) root.findViewById(R.id.colFlat);
@@ -78,7 +84,6 @@ public class myAdapter extends CursorAdapter {
         //return LayoutInflater.from(context).inflate(R.layout.table_layout, parent, false);
     }
 
-    @SuppressLint("ResourceAsColor")
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
 
@@ -107,8 +112,8 @@ public class myAdapter extends CursorAdapter {
             holder.column3.setText(getCorrectType(cursor.getInt(FLOOR)));
             holder.column4.setText(String.valueOf(cursor.getInt(ROOMS)));
             holder.column5.setText(String.valueOf(cursor.getFloat(SQUARE)));
-            holder.column6.setText(String.valueOf(makePrettyCost(cursor.getString(COST))));
-            holder.column7.setText(cursor.getString(Status));
+            holder.column6.setText(String.valueOf(Flat.makePrettyCost(cursor.getString(COST))));
+            holder.column7.setText(Flat.setCorrectStatus(cursor.getInt(Status)));
 
 
             holder.classID = cursor.getString(ID);
@@ -150,36 +155,7 @@ public class myAdapter extends CursorAdapter {
         }
     }
 
-    private String makePrettyCost(String cost){
-        long realcost=0;
-        realcost = Math.round(Double.valueOf(cost));
 
-        String tempCost =  String.valueOf(realcost);
-        String pattern = null;
-        switch (tempCost.length()){
-            case 6:
-                pattern = "###,###";
-                break;
-            case 7:
-                pattern = "#,###,###";
-                break;
-            case 8:
-                pattern = "##,###,###";
-                break;
-            case 9:
-                pattern = "###,###,###";
-                break;
-            case 10:
-                pattern = "#,###,###,###";
-                break;
-            default:
-                pattern = "###";
-                break;
-        }
-        DecimalFormat mf = new DecimalFormat(pattern);
-        tempCost = mf.format(realcost);
-        return tempCost.replace(","," ");
-    }
 
     private String getCorrectType(int type){
         switch (type){
@@ -196,6 +172,8 @@ public class myAdapter extends CursorAdapter {
                 return type+"";
         }
     }
+
+
 
     public static class ViewHolder {
 
