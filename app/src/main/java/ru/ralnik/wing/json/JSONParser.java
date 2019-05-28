@@ -49,9 +49,9 @@ public class JSONParser {
                         Gson gson = new Gson();
                         List<Flat> flats = Arrays.asList(gson.fromJson(reader, Flat[].class));
 
-                        for (int i=0;i<flats.size();i++){
-                            Log.d("myDebug", flats.get(i).getNom_kv()+"");
-                        }
+//                        for (int i=0;i<flats.size();i++){
+//                            Log.d("myDebug", flats.get(i).getNom_kv()+"");
+//                        }
 
                         for (Flat flat : flats) {
                            // new FlatRepository(context).insert(flat);
@@ -79,7 +79,7 @@ public class JSONParser {
                     if(urlConnection != null){
                         urlConnection.disconnect();
                     }
-                    Log.d("myDebug","finish");
+                    //Log.d("myDebug","finish");
                 }
             }
         }).start();

@@ -1,6 +1,7 @@
 package ru.ralnik.wing;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import java.util.List;
 
 import ru.ralnik.wing.json.JSONParser;
+import ru.ralnik.wing.services.AutoloadingData;
 
 public class SplashscreenActivity extends AppCompatActivity {
 
@@ -65,6 +67,7 @@ public class SplashscreenActivity extends AppCompatActivity {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+            startService(new Intent(SplashscreenActivity.this, AutoloadingData.class));
             startApp();
 
         }

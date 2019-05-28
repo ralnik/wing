@@ -30,6 +30,7 @@ import ru.ralnik.wing.myLibrary.NavigationButton.DemonsrationButton;
 import ru.ralnik.wing.myLibrary.customListView.listviewItemSelected;
 import ru.ralnik.wing.myLibrary.customListView.myAdapter;
 import ru.ralnik.wing.myseekbarrange.SeekbarRange;
+import ru.ralnik.wing.services.AutoloadingData;
 import ru.ralnik.wing.sqlitedb.CreateSQLQuery;
 import ru.ralnik.wing.sqlitedb.FlatRepository;
 
@@ -700,5 +701,11 @@ public class MainActivity extends AppCompatActivity {
         imgPlanFloor.setImageResource(floorResID);
         imgPlanFlat.setImageResource(flatResID);
         //*******************************************************
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(new Intent(MainActivity.this, AutoloadingData.class));
     }
 }
