@@ -26,7 +26,7 @@ public class HttpPlayerFactory {
     public PlayerCommands getCommand() {
         if (playerCommands == null) {
             //playerCommands = new VLCPlayer(cfg.getHost());
-            playerCommands = new VVVVPlayer("192.168.1.100");
+            playerCommands = new VVVVPlayer(cfg.getHost());
         }
         return playerCommands;
     }

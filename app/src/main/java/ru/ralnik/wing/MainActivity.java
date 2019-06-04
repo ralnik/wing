@@ -640,7 +640,7 @@ public class MainActivity extends AppCompatActivity {
     public void btnControllingPlan(View v){
         switch(v.getId()){
             case R.id.btnNext:
-                if(adapterPosition < adapter.getCount()){
+                if(adapterPosition < adapter.getCount()-1){
                     adapterPosition++;
                 }
                 break;
